@@ -17,14 +17,24 @@ public class Converter {
         
         try(Scanner scanner = new Scanner(System.in)) {
             System.out.print("Please enter temperature (for conversion): ");
+            double inputTemp = scanner.nextDouble();
 
-            // (part 1) conversion from C to F
+            
+            TempConvert cToF = new CelsiusToFahrenheit();
+            double resultCtoF = cToF.convert(inputTemp);
+            System.out.println("C to F: " + resultCtoF);
+
             
             
-            // (part 2) conversion from F to C
+            TempConvert fToC = (temp) -> (temp - 32) * 5.0 / 9.0;
+            double resultFtoC = fToC.convert(inputTemp);
+            System.out.println("F to C: " + resultFtoC);
+
             
             
-            // (part 3) conversion from F to K
+            TempConvert fToK = (temp) -> (temp - 32) * 5.0 / 9.0 + 273.15;
+            double resultFtoK = fToK.convert(inputTemp);
+            System.out.println("F to K: " + resultFtoK);
             
 
 
@@ -33,3 +43,4 @@ public class Converter {
     } // main () method closed
 
 } // Converter { } class closed
+

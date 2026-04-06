@@ -15,18 +15,32 @@ public class KnockKnockClient {
 
     public static void sendAndReceive(PrintWriter writer, String message, Scanner scanner) {
         
-        // 
-        // 
-        // 
+        writer.println(message);
+        writer.flush();
+
+        String response = scanner.nextLine();
+        System.out.println("Server: " + response);
 
     } // sendAndReceive() method closed
     
 
     public static void joke(String who,String punchLine) throws IOException {
-        
-        //  
-        // 
-        // 
+    
+        Socket socket = new Socket(SERVER, PORT);
+
+        Scanner scanner = new Scanner(socket.getInputStream());
+        PrintWriter writer = new PrintWriter(socket.getOutputStream());
+
+        // Receive "Knock knock"
+        System.out.println("Server: " + scanner.nextLine());
+
+        // Send "who"
+        sendAndReceive(writer, who, scanner);
+
+        // Send punchline
+        sendAndReceive(writer, punchLine, scanner);
+
+        socket.close();
 
     } // joke() method closed
 
